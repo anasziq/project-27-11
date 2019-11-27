@@ -1,0 +1,66 @@
+<!-- <ion-content padding>
+  <ion-card-header>
+    <ion-card-title>Choose Images to Upload</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="fileUpload btn btn-primary">
+      <span>Upload</span>
+      <input
+        id="uploadBtn"
+        type="file"
+        class="upload"
+        (change)="uploadFile($event.target.files)"
+      />
+    </div>
+  </ion-card-content>
+</ion-content> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic 4 Crop Upload
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <img *ngIf="!fileUrl" src="assets/no-image.jpeg"/>
+    <img *ngIf="fileUrl" src="{{fileUrl}}"/>
+    <div> {{fileUrl}} </div>
+    <ion-card-content>
+      <ion-button color="medium" size="large" (click)="cropUpload()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+<ion-content padding>
+      <form [formGroup]="profileForm" (ngSubmit)="save(profileForm.value)">
+        <ion-list margin-bottom padding-bottom>
+        
+          <section text-center class="profile-picture">
+            <!-- <app-mycomponent [url]= 'image'> </app-mycomponent> -->
+            <img  [src]="fileUrl" class="profile-picture__image" width="100px" height="100px" alt="Profile Picture">
+         
+          </section>
+          <ion-item>
+            <ion-label>First name</ion-label>
+            <ion-input type="text" formControlName="firstName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Last name</ion-label>
+            <ion-input type="text" formControlName="lastName"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input type="text" formControlName="password"></ion-input>
+          </ion-item>
+          <button ion-button block type="submit">Save</button>
+          <button ion-button block (click)="backToUser()" >Back</button>
+        </ion-list>
+      </form>
+      <div>image URL IS {{image}}</div>
+    </ion-content>
+    
